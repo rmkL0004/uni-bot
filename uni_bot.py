@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import re
 import unicodedata
+import random
 
 TOKEN = os.environ["DISCORD_TOKEN"]
 
@@ -36,8 +37,13 @@ async def on_message(message):
         return
 
     if contains_uni(message.content):
-        await message.channel.send("うに発見！")
-        await message.add_reaction("🍣")
+    responses = [
+        "うにだ！",
+        "うに！",
+        "うに発見！"
+    ]
+
+    await message.reply(random.choice(responses))
 
     await bot.process_commands(message)
 
